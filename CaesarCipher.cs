@@ -28,5 +28,9 @@ public class CaesarCipher
         
         return result;
     }
+    
+    public static string Decrypt(string text, int key)
+    {
+        return Encrypt(text, -key);
+    }
 }
-  
