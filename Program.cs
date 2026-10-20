@@ -2,9 +2,9 @@ using System;
 class Menu {
   static void Main() {
     
-    bool onOff = true;
+    bool executando = true;
     
-    while (onOff)
+    while (executando)
     {
         Console.Clear();
         
@@ -16,7 +16,7 @@ class Menu {
         Console.WriteLine("3 - Quebrar cifra");
         Console.WriteLine("0 - Sair");
         Console.WriteLine("==============================");
-        Console.Write("Escolha uma opção:");
+        Console.Write("Escolha uma opção: ");
         
         string opcao = Console.ReadLine() ?? "";
         
@@ -60,6 +60,28 @@ class Menu {
                 
                 break;
             
+            case "3":
+                Console.Write("Digite a mensagem criptografada: ");
+                string textoCriptografado = Console.ReadLine() ?? "";
+                
+                BruteForce.Crack(textoCriptografado);
+                break;
+            
+            case "0":
+                executando = false;
+                Console.WriteLine("Encerrando o CryptoLab...");
+                break;
+            
+            default:
+                Console.WriteLine("Opção inválida!");
+                break;
+        }
+        
+        if (executando)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Pressione uma tecla para continuar...");
+            Console.ReadKey();
         }
     }
   }
