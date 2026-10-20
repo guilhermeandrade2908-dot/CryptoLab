@@ -17,6 +17,30 @@ class Menu {
         Console.WriteLine("0 - Sair");
         Console.WriteLine("==============================");
         Console.Write("Escolha uma opção:");
+        
+        string opcao = Console.ReadLine() ?? "";
+        
+        switch (opcao)
+        {
+            case "1":
+                Console.Write("Digite a mensagem: ");
+                string mensagem = Console.ReadLine() ?? "";
+                
+                Console.Write("Digite a chave: ");
+                if (int.TryParse(Console.ReadLine(), out int chave))
+                {
+                    string criptografada =
+                        CaesarCipher.Encrypt(mensagem, chave);
+                    
+                    Console.WriteLine($"Resultado: {criptografada}");
+                }
+                else
+                {
+                    Console.WriteLine("Chave inválida! Digite um valor válido.");
+                }
+                
+                break;
+        }
     }
   }
 }
