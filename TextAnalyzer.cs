@@ -1,37 +1,43 @@
 using System;
+using System.Collections.Generic;
 
 public class TextAnalyzer
 {
-    private static readonly string[] CommonWords =
+    private static readonly Dictionary<string, int> CommonWords = new()
     {
-        "de",
-        "da",
-        "do",
-        "que",
-        "e",
-        "é",
-        "em",
-        "um",
-        "uma",
-        "para",
-        "com",
-        "não",
-        "por",
-        "os",
-        "as"
+        {"de", 1},
+        {"da", 1},
+        {"do", 1},
+        {"que", 2},
+        {"e", 1},
+        {"é", 2},
+        {"em", 1},
+        {"um", 1},
+        {"uma", 1},
+        {"para", 2},
+        {"com", 2},
+        {"não", 3},
+        {"por", 1},
+        {"os", 1},
+        {"as", 1}
     };
     
     public static int Score(string text)
     {
         int score = 0;
         
-        string normalizedText = text.ToLowerCase();
+        string normalizedText = text.ToLower();
         
-        foreach (string word in CommonWords)
+        string[] words = normalizedText.Split(
+            ' ',
+            StringSplitOptions.RemoveEmptyEntries
+        );
+        
+        foreach (string word in words)
         {
-            if (normalizedText.Contains(word))
+            if (CommonWords.ContainsKey(word))
             {
-                score++;
+                score += CommonWords[word];
             }
         }
         
