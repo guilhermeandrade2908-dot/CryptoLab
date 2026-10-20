@@ -36,10 +36,30 @@ class Menu {
                 }
                 else
                 {
-                    Console.WriteLine("Chave inválida! Digite um valor válido.");
+                    Console.WriteLine("Chave inválida! Digite uma chave valida.");
                 }
                 
                 break;
+            
+            case "2":
+                Console.Write("Digite a mensagem criptografada: ");
+                string texto = Console.ReadLine() ?? "";
+                
+                Console.Write("Digite a chave: ");
+                if (int.TryParse(Console.ReadLine(), out int chaveDec))
+                {
+                    string descriptografada =
+                        CaesarCipher.Decrypt(texto, chaveDec);
+                        
+                    Console.WriteLine($"Resultado: {descriptografada}");
+                }
+                else
+                {
+                    Console.WriteLine("Chave inválida! Digite uma chave valida.");
+                }
+                
+                break;
+            
         }
     }
   }
